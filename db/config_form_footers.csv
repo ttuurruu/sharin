@@ -1,0 +1,10 @@
+900001001,submit,col-md-8 col-md-offset-4,btn btn-primary,login,fa-sign-in,,
+900002003,submit,col-md-2 col-md-offset-4,btn btn-success,save,fa-floppy-o,,
+900002003,link,col-md-2,btn btn-danger,cancel,fa-close,users,index
+900003003,submit,col-md-2 col-md-offset-4,btn btn-success,save,fa-floppy-o,,
+900003003,link,col-md-2,btn btn-danger,cancel,fa-close,homes,user
+3,submit,col-md-2 col-md-offset-4,btn btn-success,save,fa-floppy-o,,
+3,link_ajax,col-md-2,btn btn-danger,cancel,fa-close,member_systems,cancel
+4,submit,col-md-2 col-md-offset-4,btn btn-success,save,fa-floppy-o,,
+4,link_ajax,col-md-2,btn btn-danger,cancel,fa-close,member_systems,cancel
+5,btn,,btn btn-success,send,fa-envelope-o,,

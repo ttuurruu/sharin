@@ -1,0 +1,36 @@
+= form_for @member_table do |f|
+  - if @member_table.errors.any?
+    #error_explanation
+      h2 = "#{pluralize(@member_table.errors.count, "error")} prohibited this member_table from being saved:"
+      ul
+        - @member_table.errors.full_messages.each do |message|
+          li = message
+
+  .field
+    = f.label :code
+    = f.text_field :code
+  .field
+    = f.label :name
+    = f.text_field :name
+  .field
+    = f.label :category
+    = f.number_field :category
+  .field
+    = f.label :hierarchy_level
+    = f.number_field :hierarchy_level
+  .field
+    = f.label :controller
+    = f.text_field :controller
+  .field
+    = f.label :action
+    = f.text_field :action
+  .field
+    = f.label :param
+    = f.text_field :param
+  .field
+    = f.label :font_awesome
+    = f.text_field :font_awesome
+  .field
+    = f.label :description
+    = f.text_field :description
+  .actions = f.submit

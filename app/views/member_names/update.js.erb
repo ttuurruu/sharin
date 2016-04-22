@@ -1,0 +1,2 @@
+$("#list").html("<%= escape_javascript(render :partial => "list") %>");
+$("#alert").html("<div class='alert alert-success'><a class='close' data-dismiss='alert'>×</a><%= escape_javascript(flash[:notice])%></div>");

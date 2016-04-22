@@ -1,0 +1,25 @@
+.panel.panel-success
+  .panel-heading
+    h3.panel-title
+      = t('link.new_history')
+  .panel-body
+    = form_for(@record, remote: true) do |f|
+
+      = f.hidden_field :user_id, :value => @user_id
+      = f.hidden_field :ended_on, :value => "2099-12-31"
+
+      .row
+        .form-horizontal.col-xs-12.col-md-8
+          == render :partial => 'shared/form', :locals => {:f => f}
+
+          .col-md-8.col-md-offset-4
+            = button_tag :type => "submit", class: "btn btn-success" do
+              i.fa.fa-floppy-o
+              '
+              = t('link.save')
+              '
+            '
+            = link_to cancel_member_names_path, class: "btn btn-danger", :remote => true do
+              i.fa.fa-close
+              '
+              = t('link.cancel')

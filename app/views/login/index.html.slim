@@ -1,0 +1,21 @@
+h2 = t('link.login')
+
+.panel.panel-default
+  .panel-body
+    = form_for @record ,url: {action: :auth } do |f|
+      == render :partial => 'shared/form_column', :locals => {:f => f, form_columns: @form_columns}
+      == render :partial => 'shared/form_footer', :locals => {:f => f, form_footers: @form_footers}
+br
+
+== render 'shared/flash'
+
+= link_to  controller: :registers, action: "password_reset" do
+  i.fa.fa-question-circle
+  '
+  = t('link.password_reset')
+br
+br
+= link_to  controller: :registers, action: "index" do
+  i.fa.fa-sign-out
+  '
+  = t('link.registers')

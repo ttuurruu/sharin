@@ -1,0 +1,92 @@
+== render 'shared/member_navi'
+
+.row
+  .col-xs-12.col-md-6
+    = link_to '#' , id: "open_all" do
+      i.fa.fa-plus-square-o
+      '
+      u
+        = t('veiw_control.open_all')
+      '
+    = link_to '#' , id: "close_all" do
+      i.fa.fa-minus-square-o
+      '
+      u
+        = t('veiw_control.close_all')
+
+  .col-xs-12.col-md-3
+    p.text-right
+      = link_to csv_member_systems_path(format: :csv , user_id: @user_id) do
+        i.fa.fa-download
+        '
+        u
+          = t('veiw_control.file_export')
+      '
+  .col-xs-12.col-md-3
+    p.text-right
+      = link_to new_member_system_path(user_id: @user_id), :remote => true do
+        i.fa.fa-plus-square
+        '
+        u
+          = t('link.new_history')
+
+.row
+#alert
+#new
+
+.row
+  .col-xs-12.col-md-12
+    table.table.table-hover
+      thead
+        tr
+          - @view_columns.each  do |view_column|
+            th = view_column.column_name
+    table.table.table-bordered.table-hover
+      tbody
+        - @records.each.with_index(1)  do |result, i|
+
+          /現在有効なレコードを判定
+          - if result.started_on > Date.current
+            /未来
+            - color = "warning"
+          - elsif result.started_on <= Date.current and result.ended_on >= Date.current
+            /現在
+            - color = "info"
+          - else
+            /過去
+            - color = "default"
+
+          tr class = "#{color}"
+            - @view_columns.each  do |view_column|
+              td = result["#{view_column.column_name}"]
+            td
+              p.text-right
+                = link_to member_system_path(result.id) , :remote => true do
+                  i.fa.fa-pencil-square-o
+                  '
+                  u
+                    = t('link.show')
+              p.text-right
+                = link_to edit_member_system_path(result.id) , :remote => true do
+                  i.fa.fa-pencil-square-o
+                  '
+                  u
+                    = t('link.edit')
+                '
+                /最新履歴のみ削除ボタンを表示
+                - if i == 1
+                  = link_to member_system_path(result.id), method: :delete, data: {confirm: t('message.delete_alert')}, :remote => true  do
+                    i.fa.fa-trash-o
+                    '
+                    u
+                      = t('link.delete')
+
+          tr id = "#{result.id}_show"
+            td colspan="6"
+              div class = "form-group"
+                div class = "col-md-4 control-label"
+                  b  aaaaaaaaa
+                div class = "col-md-8"
+                  = result.started_on
+
+          div id = "#{result.id}_edit"

@@ -1,0 +1,81 @@
+#form.modal.fade
+  .modal-dialog.modal-lg
+    .modal-content
+      = form_for(@evaluation_detail) do |f|
+        .modal-header
+          button type="button" class="close" data-dismiss="modal" aria-label="Close"
+            span aria-hidden="true"
+              |  &times;
+          h4.modal-title
+            i.fa.fa-plus-square
+              |  明細登録
+        .modal-body
+          .panel.panel-info
+            .panel-heading
+              h3.panel-title 明細登録
+            .panel-body
+              p XXXXXX
+
+          .field.form-group
+            = f.hidden_field :evaluation_header_id
+
+          .field.form-group
+            = f.label :title
+            '
+            span.label.label-danger
+              | 必須
+            = f.text_field :title, class: "form-control validate[required]"
+            span.help-block
+            p
+              | タイトルを入力してください。
+
+          .field.form-group
+            = f.label :content
+            '
+            span.label.label-danger
+              | 必須
+            = f.text_area :content, class: "form-control validate[required,custom[integer],min[1],max[100]]"
+            span.help-block
+            p
+              | 内容を入力してください。
+
+          .field.form-group
+            = f.label :weight
+            '
+            span.label.label-danger
+              | 必須
+            = f.number_field :weight, class: "form-control validate[required]"
+            span.help-block
+            p
+              | ウェイトを入力してください。
+
+          - case params[:progress].to_i
+          - when 3 then
+            .field.form-group
+              = f.label :result_rate_self
+              '
+              span.label.label-danger
+                | 必須
+              = f.number_field :result_rate_self, class: "form-control validate[required]"
+              span.help-block
+              p
+                | 評点を入力してください。
+
+            .field.form-group
+              = f.label :result_content_self
+              '
+              span.label.label-danger
+                | 必須
+              = f.text_area :result_content_self, class: "form-control validate[required]"
+              span.help-block
+              p
+                | 結果コメントを入力してください。
+
+        .modal-footer
+          = button_tag :type => "submit", class: "btn btn-success" do
+            i.fa.fa-floppy-o
+            |  登録
+          '
+          button type="button" class="btn btn-danger" data-dismiss="modal"
+            i.fa.fa-close
+            |  中止

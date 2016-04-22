@@ -1,0 +1,35 @@
+h1 Listing config_views
+
+table
+  thead
+    tr
+      th Controller
+      th Action
+      th Title ja
+      th Title en
+      th Title zh
+      th Description ja
+      th Description en
+      th Description zh
+      th
+      th
+      th
+
+  tbody
+    - @config_views.each do |config_view|
+      tr
+        td = config_view.controller
+        td = config_view.action
+        td = config_view.title_ja
+        td = config_view.title_en
+        td = config_view.title_zh
+        td = config_view.description_ja
+        td = config_view.description_en
+        td = config_view.description_zh
+        td = link_to 'Show', config_view
+        td = link_to 'Edit', edit_config_view_path(config_view)
+        td = link_to 'Destroy', config_view, data: {:confirm => 'Are you sure?'}, :method => :delete
+
+br
+
+= link_to 'New Config view', new_config_view_path

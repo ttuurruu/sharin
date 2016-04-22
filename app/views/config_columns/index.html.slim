@@ -1,0 +1,33 @@
+h1 Listing config_columns
+
+table
+  thead
+    tr
+      th Column name
+      th Default name ja
+      th Default name en
+      th Default name zh
+      th Custom name ja
+      th Custom name en
+      th Custom name zh
+      th
+      th
+      th
+
+  tbody
+    - @config_columns.each do |config_column|
+      tr
+        td = config_column.column_name
+        td = config_column.default_name_ja
+        td = config_column.default_name_en
+        td = config_column.default_name_zh
+        td = config_column.custom_name_ja
+        td = config_column.custom_name_en
+        td = config_column.custom_name_zh
+        td = link_to 'Show', config_column
+        td = link_to 'Edit', edit_config_column_path(config_column)
+        td = link_to 'Destroy', config_column, data: {:confirm => 'Are you sure?'}, :method => :delete
+
+br
+
+= link_to 'New Config column', new_config_column_path

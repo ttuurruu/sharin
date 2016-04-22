@@ -1,0 +1,31 @@
+h1 Listing member_role_details
+
+table
+  thead
+    tr
+      th Member table
+      th Use type
+      th Scope type
+      th Level type
+      th Time type
+      th Crud type
+      th
+      th
+      th
+
+  tbody
+    - @member_role_details.each do |member_role_detail|
+      tr
+        td = member_role_detail.member_table_id
+        td = member_role_detail.use_type
+        td = member_role_detail.scope_type
+        td = member_role_detail.level_type
+        td = member_role_detail.time_type
+        td = member_role_detail.crud_type
+        td = link_to 'Show', member_role_detail
+        td = link_to 'Edit', edit_member_role_detail_path(member_role_detail)
+        td = link_to 'Destroy', member_role_detail, data: {:confirm => 'Are you sure?'}, :method => :delete
+
+br
+
+= link_to 'New Member role detail', new_member_role_detail_path

@@ -1,0 +1,17 @@
+.col-xs-12.col-md-8.col-md-offset-2
+  = form_for @record, :html => {:multipart => true} do |f|
+    == render :partial => 'shared/form', :locals => {:f => f, forms: @forms}
+    .row
+      .form-horizontal.col-xs-12.col-md-8
+        == render :partial => 'shared/form_column', :locals => {:f => f, form_columns: @form_columns}
+        == render :partial => 'shared/form_footer', :locals => {:f => f, form_footers: @form_footers}
+
+      /.field
+        /既存レコード(DBに保存されている)かつ、画像が存在する場合
+        - if @user.persisted? && @user.image?
+          label
+            = f.check_box :remove_image
+              | 画像を削除
+      /- if @user.image?
+        .thumbnail
+          = image_tag @user.image.url

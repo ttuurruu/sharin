@@ -1,0 +1,61 @@
+h1 Listing config_form_columns
+
+table
+  thead
+    tr
+      th Config view
+      th Column name
+      th Attribute type
+      th Standard
+      th Visible
+      th Order
+      th Custom name ja
+      th Custom name en
+      th Custom name zh
+      th Description ja
+      th Description en
+      th Description zh
+      th Required
+      th Default
+      th Sys lower
+      th Sys high
+      th Custom lower
+      th Custom high
+      th Grid class label
+      th Grid class value
+      th Data source
+      th
+      th
+      th
+
+  tbody
+    - @config_form_columns.each do |config_form_column|
+      tr
+        td = config_form_column.config_view_id
+        td = config_form_column.column_name
+        td = config_form_column.attribute_type
+        td = config_form_column.standard
+        td = config_form_column.visible
+        td = config_form_column.order
+        td = config_form_column.custom_name_ja
+        td = config_form_column.custom_name_en
+        td = config_form_column.custom_name_zh
+        td = config_form_column.description_ja
+        td = config_form_column.description_en
+        td = config_form_column.description_zh
+        td = config_form_column.required
+        td = config_form_column.default
+        td = config_form_column.sys_lower
+        td = config_form_column.sys_high
+        td = config_form_column.custom_lower
+        td = config_form_column.custom_high
+        td = config_form_column.grid_class_label
+        td = config_form_column.grid_class_value
+        td = config_form_column.data_source
+        td = link_to 'Show', config_form_column
+        td = link_to 'Edit', edit_config_form_column_path(config_form_column)
+        td = link_to 'Destroy', config_form_column, data: {:confirm => 'Are you sure?'}, :method => :delete
+
+br
+
+= link_to 'New Config form column', new_config_form_column_path

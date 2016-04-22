@@ -1,0 +1,30 @@
+.col-xs-12.col-md-12
+  h4
+    i.fa.fa-list
+      |  コンピテンシーグループ設定
+
+  table.table.table-hover
+    thead
+      tr
+        th Category
+        th Code
+        th Name
+        th Ability requirements
+        th
+        th
+        th
+
+    tbody
+      - @ability_groupings.each do |ability_grouping|
+        tr
+          td = ability_grouping.category
+          td = ability_grouping.code
+          td = ability_grouping.name
+          td = ability_grouping.ability_requirements_id
+          td = link_to 'Show', ability_grouping
+          td = link_to 'Edit', edit_ability_grouping_path(ability_grouping)
+          td = link_to 'Destroy', ability_grouping, data: {:confirm => 'Are you sure?'}, :method => :delete
+
+  br
+
+  = link_to 'New Ability grouping', new_ability_grouping_path

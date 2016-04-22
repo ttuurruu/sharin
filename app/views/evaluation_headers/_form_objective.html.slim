@@ -1,0 +1,35 @@
+table.table.table-hover
+  thead
+    tr
+      th = EvaluationDetail.human_attribute_name('title')
+      th = EvaluationDetail.human_attribute_name('content')
+      th = EvaluationDetail.human_attribute_name('weight')
+      - case @evaluation_header.evaluation_setting.progress
+      - when 3 then
+        th = EvaluationDetail.human_attribute_name('result_rate_self')
+        th = EvaluationDetail.human_attribute_name('result_content_self')
+        th
+  tbody
+    - @evaluation_details.each do |evaluation_detail|
+      tr
+        td
+          u
+            = link_to edit_evaluation_detail_path(evaluation_detail, progress: @evaluation_header.evaluation_setting.progress) , data: {toggle: "modal"}, :remote => true  do
+              = evaluation_detail.title
+        td = evaluation_detail.content
+        td = evaluation_detail.weight
+        - case @evaluation_header.evaluation_setting.progress
+        - when 3 then
+          td = evaluation_detail.result_rate_self
+          td = evaluation_detail.result_content_self
+          td = link_to evaluation_detail, data: {:confirm => 'Are you sure?'} , class: "btn btn-default" do
+            i.fa.fa-trash-o
+
+br
+  = link_to new_evaluation_detail_path(id: @evaluation_header.id), data: {toggle: "modal"}, :remote => true do
+    i.fa.fa-plus-square
+    u
+      |  目標行の追加
+
+.row
+  #modal

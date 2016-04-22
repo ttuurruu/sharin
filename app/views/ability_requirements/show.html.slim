@@ -1,0 +1,18 @@
+p#notice = notice
+
+p
+  strong Category:
+  = @ability_requirement.category
+p
+  strong Code:
+  = @ability_requirement.code
+p
+  strong Title:
+  = @ability_requirement.title
+p
+  strong Content:
+  = @ability_requirement.content
+
+= link_to 'Edit', edit_ability_requirement_path(@ability_requirement)
+'|
+= link_to 'Back', ability_requirements_path

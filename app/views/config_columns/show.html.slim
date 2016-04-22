@@ -1,0 +1,27 @@
+p#notice = notice
+
+p
+  strong Column name:
+  = @config_column.column_name
+p
+  strong Default name ja:
+  = @config_column.default_name_ja
+p
+  strong Default name en:
+  = @config_column.default_name_en
+p
+  strong Default name zh:
+  = @config_column.default_name_zh
+p
+  strong Custom name ja:
+  = @config_column.custom_name_ja
+p
+  strong Custom name en:
+  = @config_column.custom_name_en
+p
+  strong Custom name zh:
+  = @config_column.custom_name_zh
+
+= link_to 'Edit', edit_config_column_path(@config_column)
+'|
+= link_to 'Back', config_columns_path

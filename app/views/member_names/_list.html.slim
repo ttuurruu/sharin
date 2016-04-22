@@ -1,0 +1,92 @@
+== render 'shared/member_navi'
+
+.row
+  .col-xs-12.col-md-6
+    = link_to '#' , id: "open_all" do
+      i.fa.fa-plus-square-o
+      '
+      u
+        = t('veiw_control.open_all')
+      '
+    = link_to '#' , id: "close_all" do
+      i.fa.fa-minus-square-o
+      '
+      u
+        = t('veiw_control.close_all')
+
+  .col-xs-12.col-md-3
+    p.text-right
+      = link_to csv_member_names_path(format: :csv , user_id: @user_id) do
+        i.fa.fa-download
+        '
+        u
+          = t('veiw_control.file_export')
+      '
+  .col-xs-12.col-md-3
+    p.text-right
+      = link_to new_member_name_path(user_id: @user_id), :remote => true do
+        i.fa.fa-plus-square
+        '
+        u
+          = t('link.new_history')
+
+.row
+#alert
+#new
+
+/リスト表示
+- @member_names.each.with_index(1)  do |member_name , i |
+
+  /現在有効なレコードを判定
+  - if member_name.started_on > Date.current
+    /未来
+    - open = ""
+    - panel_color = "panel-warning"
+  - elsif member_name.started_on <= Date.current and member_name.ended_on >= Date.current
+    /現在
+    - open = "in"
+    - panel_color = "panel-info"
+  - else
+    /過去
+    - open = ""
+    - panel_color = "panel-default"
+
+  div id = "#{member_name.id}"
+    .panel-group id="accordion" role="tablist" aria-multiselectable="true"
+      .panel class= "#{panel_color}"
+        .panel-heading role="tab" id="headingTwo"
+          .panel-title
+            .text-left.pull-left
+              a.collapsed role="button" data-toggle="collapse" data-parent="#accordion" href="#record#{member_name.id}" aria-expanded="true" aria-controls="record#{member_name.id}"
+                = member_name.started_on unless member_name.started_on.strftime("%Y-%m-%d") == '1900-01-01'
+                '
+                | ～
+                '
+                = member_name.ended_on unless member_name.ended_on.strftime("%Y-%m-%d") == '2099-12-31'
+
+            p.text-right
+              = link_to edit_member_name_path(member_name.id) , :remote => true do
+                i.fa.fa-pencil-square-o
+                '
+                u
+                  = t('link.edit')
+              '
+              /最新履歴のみ削除ボタンを表示
+              - if i == 1
+                = link_to member_name_path(member_name.id), method: :delete, data: {confirm: t('message.delete_alert')}, :remote => true  do
+                  i.fa.fa-trash-o
+                  '
+                  u
+                    = t('link.delete')
+
+        .panel-collapse class ="collapse #{open}" id="record#{member_name.id}" role="tabpanel" aria-labelledby="headingTwo"
+          .panel-body
+            - @table_settings.each do |table_setting|
+              .col-xs-12.col-md-3
+                b.text-left
+                  = table_setting.custom_name_ja.blank? ? MemberName.human_attribute_name(table_setting.column_name) : table_setting.custom_name_ja
+              .col-xs-12.col-md-3
+                .text-left
+                  = member_name["#{table_setting.column_name}"].blank? ? "-" : member_name["#{table_setting.column_name}"]
+
+  div id = "#{member_name.id}_edit"

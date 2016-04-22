@@ -1,0 +1,61 @@
+.col-xs-12.col-md-8.col-md-offset-2
+  = form_for(@user) do |f|
+
+    .panel.panel-info
+      .panel-heading
+        h3.panel-title 編集
+      .panel-body
+        p ユーザ情報の編集をします。
+
+    .form-group
+      = f.label :code
+      = f.text_field :code, class: "form-control  validate[required,maxSize[10],custom[onlyLetterNumber]]"
+      span.help-block
+      p
+        | ログイン時に利用するユーザコードになります。
+        b 半角英数10文字以内
+        | で登録してください。
+        br
+        | 登録後に後から変更することも可能です。(例) User001
+
+
+    .form-group
+      = f.label :name
+      = f.text_field :name, class: "form-control validate[required,maxSize[20]]"
+      span.help-block
+      p
+        | ユーザアカウント名を登録します。
+        b 20文字以内
+        | で登録してください。
+        br
+        | 登録後に後から変更することも可能です。(例) ユーザー 太郎
+
+    .form-group
+      = f.label :email
+      = f.text_field :email, class: "form-control validate[required,custom[email]]"
+      span.help-block
+      p
+        | Eメールを登録します。
+
+    .form-group
+      = f.label :image
+      .field
+        /画像が存在する場合
+        - if @user.image?
+          = image_tag @user.image.url, :size => "100x100"
+          label
+            = f.check_box :remove_image
+            | 削除
+      = f.file_field :image
+      = f.hidden_field :image_cache
+      span.help-block
+      p
+        | 写真を登録します。
+
+    = button_tag :type => "submit", class: "btn btn-success" do
+      i.fa.fa-floppy-o
+      |  登録
+    '
+    = link_to ({controller: :users, action: "index"}), {class: "btn btn-danger"} do
+      i.fa.fa-close
+      |  中止

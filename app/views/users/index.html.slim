@@ -1,0 +1,27 @@
+== render 'shared/member_menu'
+br
+br
+.col-xs-12.col-md-8
+
+  = search_form_for @q, :remote => true do |f|
+    .col-md-9.form-inline
+      = f.search_field :code_or_member_names_name_cont, class: "form-control col-md-6", placeholder: "コード or 名前"
+      '
+      = button_tag :type => "submit", name: 's', class: "btn btn-primary" , id: "search_btn" do
+        i.fa.fa-search
+        |  検索
+
+.col-xs-12.col-md-2
+  .btn-group data-toggle="buttons" id="select_list"
+    label.btn.btn-default.active
+      input type="radio" name="options" id="option1" autocomplete="off" value="1" checked="checked"
+        .i.fa.fa-th
+    label.btn.btn-default
+      input type="radio" name="options" id="option2" autocomplete="off"value="2"
+        .i.fa.fa-list
+
+/検索結果部分
+.col-xs-12.col-md-12
+  #result
+    == render "result"
+

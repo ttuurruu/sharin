@@ -1,0 +1,33 @@
+= form_for @member_role do |f|
+
+  .field
+    = f.label :name
+    = f.text_field :name
+
+  table
+    thead
+      tr
+        th Code
+        th Name
+        th Category
+        th Hierarchy level
+        th Font awesome
+        th Font awesome
+
+    tbody
+      - @member_tables.each do |member_table|
+        tr
+          td = member_table.category
+          td = member_table.code
+          td
+            i class = "fa #{member_table.font_awesome}"
+          td = member_table.name
+          td = select :use_type, id = "#{member_table.code}", [["未使用", 0], ["利用する", 1]]
+          td = select :scope_type, id = "#{member_table.code}", [["同じ所属", 1], ["同じグループ", 2], ["全員", 3]]
+          td = select :level_type, id = "#{member_table.code}", [["配下", 1], ["同列まで", 2], ["全員", 3]]
+          td = select :time_type, id = "#{member_table.code}", [["全て", 1], ["過去～現在", 2], ["現在～未来", 3], ["現在のみ", 4]]
+          td = select :crud_type, id = "#{member_table.code}", [["参照のみ", 1], ["編集可能", 2]]
+  .actions = f.submit
+
+
+

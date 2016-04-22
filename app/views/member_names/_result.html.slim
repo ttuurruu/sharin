@@ -1,0 +1,36 @@
+== render :partial => 'shared/paginate' , locals: {results: @results}
+
+- url_options = { action: :index }
+- html_options = { remote: true, method: :get }
+
+.col-xs-12.col-md-12
+  table.table.table-hover
+    thead
+      tr
+        th
+        th = sort_link(@q, :code, User.human_attribute_name('code'), url_options, html_options)
+        th = sort_link(@q, :name, MemberName.human_attribute_name('name'), url_options, html_options)
+        th
+        th = sort_link(@q, :name, MemberName.human_attribute_name('started_on'), url_options, html_options)
+        th = sort_link(@q, :name, MemberName.human_attribute_name('updated_at'), url_options, html_options)
+        th
+          |  最終更新者
+    tbody
+      - @results.each do |member_name|
+        tr
+          td
+            = image_tag(member_name.user.image.url, :size => "30x30")
+          td
+            = member_name.user.code
+          td
+            u
+              = link_to ({controller: :members, action: "profile" , id: member_name.user_id , code: @member_table.code}) do
+                = member_name.name
+                '
+                i.fa.fa-external-link
+          td
+          td
+            = member_name.started_on
+          td
+            = member_name.updated_at
+          td

@@ -1,0 +1,77 @@
+- form_columns.each do |form_column|
+
+  /hidden_fieldのセット
+  - if form_column.attribute_type == "hidden"
+    = f.hidden_field form_column.config_column.column_name
+  -else
+
+    /1-1.必須（*マーク）の表示
+    - required = "required" if form_column.required == true
+    div class = "form-group #{required}"
+
+      ////1-1-1.ラベルを設定///
+      div class = "#{form_column.grid_class_label}"
+        b
+          = eval("form_column.config_column.custom_name_#{@locale}.blank?") ? eval("form_column.config_column.default_name_#{@locale}") : eval("form_column.config_column.custom_name_#{@locale}")
+
+      ////1-1-2.値を設定///
+
+      /validationのセット
+      - validation = ""
+      /必須
+      - validation = "required" if form_column.required == true
+      /文字数（最大）
+      - validation = validation + ",maxSize[#{form_column.config_column.sys_high}]" unless form_column.config_column.sys_high.blank?
+      /文字数（最小）
+      - validation = validation + ",minSize[#{form_column.config_column.sys_lower}]" unless form_column.config_column.sys_lower.blank?
+
+      /項目Typeごとに設定
+      div class = "#{form_column.grid_class_value}"
+
+        /入力項目
+        - case form_column.attribute_type
+        - when "text" then
+          = f.text_field form_column.config_column.column_name, class: "form-control validate[#{validation}]"
+        - when "text_tag" then
+          = text_field_tag form_column.config_column.column_name, "" , class: "form-control validate[#{validation}]"
+        - when "alphanumeric" then
+          = f.text_field form_column.config_column.column_name, class: "form-control validate[#{validation},custom[onlyLetterNumber]]"
+        - when "email" then
+          = f.text_field form_column.config_column.column_name, class: "form-control validate[#{validation},custom[email]]"
+        - when "date" then
+          .input-group.date
+            = f.text_field form_column.config_column.column_name, class: "form-control validate[#{validation},custom[date],future[#{@record.started_on}],past[2099/12/31]]"
+            span class="input-group-addon"
+              i.fa.fa-calendar
+        - when "date_tag" then
+          .input-group.date
+            = text_field_tag form_column.config_column.column_name, "" , class: "form-control validate[#{validation},custom[date]],past[2099/12/31]]"
+            span class="input-group-addon"
+              i.fa.fa-calendar
+        - when "password_tag" then
+          = password_field_tag form_column.config_column.column_name, "" ,class: "form-control validate[#{validation}]"
+        - when "password_confirmation_tag" then
+          = password_field_tag form_column.config_column.column_name, "", class: "form-control validate[#{validation},equals[password]]"
+        - when "memo" then
+          = f.text_area form_column.config_column.column_name, class: "form-control validate[#{validation}]"
+        - when "image" then
+          = f.file_field form_column.config_column.column_name , class: "filestyle"
+          /= f.hidden_field :image_cache
+        - when "image_tag" then
+          = file_field_tag form_column.config_column.column_name , class: "filestyle"
+          /= hidden_field_tag :image_cache
+        - when "list" then
+          = f.select form_column.config_column.column_name , options_from_collection_for_select(form_column.data_source.constantize.all , :id, :name)
+        - when "list_tag" then
+          = select_tag form_column.config_column.column_name , options_from_collection_for_select(form_column.data_source.constantize.all , :id, :name)
+        - when "chkbox" then
+          = f.check_box form_column.config_column.column_name , class: "validate[#{validation}]"
+
+        /description
+        span.help-block
+          p
+            /noneの場合にはdescriptionを表示しない
+            - unless form_column.description_ja == "none"
+              = eval("form_column.description_#{@locale}.blank?") ? t("description.#{form_column.config_view.controller}.#{form_column.config_view.action}.#{form_column.config_column.column_name}") : eval("form_column.description_#{@locale}")
+
+

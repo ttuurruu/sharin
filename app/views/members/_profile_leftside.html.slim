@@ -1,0 +1,16 @@
+.text-center
+  br
+  /写真・プロフィール
+  img.img-circle
+    = image_tag get_user_image(@user.id), width:'100',height:'100'
+  h4
+    = get_member_name(@user.id)
+  = @user.code
+
+hr
+br
+= link_to controller: @function.controller , action: "index" do
+  i.fa.fa-reply
+  '
+  U
+    = t('link.back_to_memberlist')

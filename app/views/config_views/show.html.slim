@@ -1,0 +1,30 @@
+p#notice = notice
+
+p
+  strong Controller:
+  = @config_view.controller
+p
+  strong Action:
+  = @config_view.action
+p
+  strong Title ja:
+  = @config_view.title_ja
+p
+  strong Title en:
+  = @config_view.title_en
+p
+  strong Title zh:
+  = @config_view.title_zh
+p
+  strong Description ja:
+  = @config_view.description_ja
+p
+  strong Description en:
+  = @config_view.description_en
+p
+  strong Description zh:
+  = @config_view.description_zh
+
+= link_to 'Edit', edit_config_view_path(@config_view)
+'|
+= link_to 'Back', config_views_path

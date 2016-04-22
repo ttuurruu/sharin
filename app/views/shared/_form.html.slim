@@ -1,0 +1,6 @@
+.panel.panel-info
+  .panel-heading
+    h3.panel-title
+      = eval("forms.title_#{@locale}.blank?") ? eval("form.#{@forms.controller}.#{@forms.action}.title") : eval("forms.title_#{@locale}")
+  .panel-body
+    = eval("forms.description_#{@locale}.blank?") ? eval("form.#{@forms.controller}.#{@forms.action}.description") : eval("forms.description_#{@locale}")

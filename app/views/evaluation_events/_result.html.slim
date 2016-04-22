@@ -1,0 +1,60 @@
+.row
+  = paginate @evaluation_events, :remote => true
+  br
+  = @evaluation_events.total_count
+  |  件中
+  = @evaluation_events.offset_value + 1
+  |  〜
+  = @evaluation_events.offset_value + @evaluation_events.length
+  |  件を表示
+
+  - url_options = {action: :index}
+  - html_options = {remote: true, method: :get}
+
+.row
+- @evaluation_events.each do |evaluation_event|
+  .col-xs-12.col-md-4
+    table.table.table-hover.table-bordered
+      td
+        .col-xs-12.col-md-10
+          | 開始前
+        .col-xs-12.col-md-2
+          i.fa.fa-cog
+        br
+        = evaluation_event.started_on
+        |  ～
+        = evaluation_event.ended_on
+        br
+        u
+          = link_to evaluation_event_path(evaluation_event) do
+            = evaluation_event.name
+        br
+        - case evaluation_event.category
+        - when 1 then
+          | 目標管理
+        - else
+          | コンピテンシー
+        br
+          | 10人
+        u
+          = link_to evaluation_objectives_path do
+            i.fa.fa-star-o
+            | グループ目標設定
+        '
+        u
+          = link_to evaluation_objectives_path do
+            i.fa.fa-list
+            | コンピテンシー設定
+        '
+        u
+          = link_to evaluation_settings_path do
+            i.fa.fa-random
+            | 対象者設定
+        '
+        u
+          = link_to controller: :evaluations, action: "index" do
+            | 自己入力
+        '
+        u
+          = link_to controller: :evaluations, action: "index" do
+            | 評価者入力

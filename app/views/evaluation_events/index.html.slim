@@ -1,0 +1,42 @@
+.col-xs-12.col-md-6
+
+  = search_form_for @q, :remote => true do |f|
+    .col-md-9.form-inline
+      = f.search_field :name_cont, class: "form-control col-md-6", placeholder: "名前"
+      '
+      = button_tag :type => "submit", name: 's', class: "btn btn-primary" do
+        i.fa.fa-search
+        |  検索
+  br
+
+  - flash.each do |name, msg|
+    br
+    div class="alert alert-#{ name == "notice" ? "success" : "danger"}"
+      a class="close" data-dismiss="alert" ×
+      = msg
+
+.col-xs-12.col-md-6
+  .btn-group
+    button type="button" class="btn btn-success"
+      i.fa.fa-plus-square-o
+        |     新しいイベントを登録する
+    button type="button" class="btn btn-success dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
+      span class="caret"
+      span class="sr-only"
+        |  Toggle Dropdown
+    ul.dropdown-menu
+      li
+        = link_to new_evaluation_event_path
+          | MBO(目標管理)
+        = link_to new_evaluation_event_path
+          | コンピテンシー(行動評価)
+        = link_to new_evaluation_event_path
+          | MBO + コンピテンシー
+      li role="separator" class="divider"
+      li
+        = link_to new_evaluation_event_path
+          | 360度(多面評価)
+
+.col-xs-12.col-md-12
+  #result
+    == render "result"

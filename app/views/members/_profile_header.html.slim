@@ -1,0 +1,18 @@
+/メニュー
+.btn-group role="group" aria-label="..."
+  - @member_tables_category.each do |member_table_category|
+    .btn-group role="group"
+      button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
+        i class = "fa #{member_table_category.font_awesome}"
+        '
+        = member_table_category.name
+        '
+        span class="caret"
+      ul.dropdown-menu
+        - @member_tables_function.each do |member_table_function|
+          - if member_table_category.category == member_table_function.category
+            li
+              = link_to profile_member_path(code: "#{member_table_function.id}") do
+                i class = "fa #{member_table_function.font_awesome}"
+                '
+                = member_table_function.name

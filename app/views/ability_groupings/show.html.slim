@@ -1,0 +1,18 @@
+p#notice = notice
+
+p
+  strong Category:
+  = @ability_grouping.category
+p
+  strong Code:
+  = @ability_grouping.code
+p
+  strong Name:
+  = @ability_grouping.name
+p
+  strong Ability requirements:
+  = @ability_grouping.ability_requirements_id
+
+= link_to 'Edit', edit_ability_grouping_path(@ability_grouping)
+'|
+= link_to 'Back', ability_groupings_path

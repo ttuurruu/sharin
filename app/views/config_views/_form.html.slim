@@ -1,0 +1,33 @@
+= form_for @config_view do |f|
+  - if @config_view.errors.any?
+    #error_explanation
+      h2 = "#{pluralize(@config_view.errors.count, "error")} prohibited this config_view from being saved:"
+      ul
+        - @config_view.errors.full_messages.each do |message|
+          li = message
+
+  .field
+    = f.label :controller
+    = f.text_field :controller
+  .field
+    = f.label :action
+    = f.text_field :action
+  .field
+    = f.label :title_ja
+    = f.text_field :title_ja
+  .field
+    = f.label :title_en
+    = f.text_field :title_en
+  .field
+    = f.label :title_zh
+    = f.text_field :title_zh
+  .field
+    = f.label :description_ja
+    = f.text_field :description_ja
+  .field
+    = f.label :description_en
+    = f.text_field :description_en
+  .field
+    = f.label :description_zh
+    = f.text_field :description_zh
+  .actions = f.submit

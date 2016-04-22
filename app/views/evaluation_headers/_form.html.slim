@@ -1,0 +1,52 @@
+= form_for @evaluation_header do |f|
+
+  = f.hidden_field :evaluation_event_id
+  = f.hidden_field :evaluation_setting_id
+  = f.hidden_field :user_id
+
+  /入力フィールド
+
+  /自己評価中
+  - case @evaluation_header.evaluation_setting.progress
+  - when 3 then
+    .field.form-group
+      = f.label :mbo_rate_self
+      '
+      span.label.label-danger
+        | 必須
+      = f.number_field :mbo_rate_self, class: "form-control validate[required]"
+      span.help-block
+      p
+        | MBO総合評価点(自己)を入力してください。
+
+    .field.form-group
+      = f.label :mbo_coment_self
+      '
+      span.label.label-danger
+        | 必須
+      = f.text_area :mbo_coment_self, class: "form-control validate[required]"
+      span.help-block
+      p
+        | MBO総合コメント(自己)を入力してください。
+
+  /上司評価中
+  - when 4,5,6 then
+    .field.form-group
+      = f.label :mbo_rate_self
+      '
+      = f.number_field :mbo_rate_self, readonly: true , class: "form-control validate[required]"
+    .field.form-group
+      = f.label :mbo_coment_self
+      '
+      = f.text_area :mbo_coment_self, readonly: true , class: "form-control validate[required]"
+
+  /ボタン
+  - case @evaluation_header.evaluation_setting.progress
+  - when 0,3 then
+    = button_tag :type => "submit", class: "btn btn-success" do
+      i.fa.fa-paper-plane-o
+      |  提出
+  '
+  = link_to ({controller: :evaluations, action: "index"}), {class: "btn btn-danger"} do
+    i.fa.fa-reply
+    |  戻る

@@ -1,0 +1,44 @@
+.panel.panel-info
+
+  .panel-heading
+    h3.panel-title 新規アカウント登録
+
+  .panel-body
+
+    - flash.each do |name, msg|
+      div class="alert alert-#{ name == "notice" ? "success" : "danger"}"
+        a class="close" data-dismiss="alert" ×
+        = msg
+    p
+    | 初めてご利用される場合、最初に新規アカウントを作成していただきます。
+    br
+    u
+      a href="http://sharin.net/terms.html" target="_blank" サービス利用規約
+    | と
+    u
+      a href="http://sharin.net/privacy.html" target="_blank" プライバシーポリシー
+    | に同意頂き、メールアドレスを入力の上、送信をお願いします。
+    br すぐに入力していただいたメールアドレスにアカウント登録のメールが届きますので、メールに記載された手順でアカウント登録を進めてください。
+    br
+
+    = form_for @register,url: {action: :auth} do |f|
+
+      .field.form-group
+        = f.label :email
+        br
+        = f.text_field :email , class: "form-control validate[required,custom[email]]"
+        span.help-block アカウント登録の案内メールが送られる宛先になります。
+
+      .field.form-group
+        = f.label :agreement
+        br
+        = f.check_box :agreement , class: "validate[required]"
+        span.help-block 利用規約・プライバシーポリシーに同意の上、チェックをつけてください。
+
+        = button_tag :type => "submit", class: "btn btn-success" do
+          i.fa.fa-envelope-o
+            |  送信
+
+= link_to  controller: :login, action: "index" do
+  i.fa.fa-sign-out
+    = t('link.to_login')

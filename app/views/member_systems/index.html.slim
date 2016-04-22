@@ -1,0 +1,29 @@
+== render 'shared/member_menu'
+br
+br
+.row
+  .col-xs-12.col-md-8
+
+    = search_form_for @q, :remote => true do |f|
+      .col-md-9.form-inline
+        = f.hidden_field :started_on_lteq , value: Date.current
+        = f.hidden_field :ended_on_gteq, value: Date.current
+        = f.search_field :member_role_name_cont, class: "form-control col-md-6", placeholder: "ロール名"
+        '
+        = button_tag :type => "submit", name: 's', class: "btn btn-primary" , id: "search_btn" do
+          i.fa.fa-search
+          '
+          = t('link.search')
+
+  .col-xs-12.col-md-4
+    .text-right
+      u
+        = link_to member_roles_path
+          i.fa.fa-cog
+          '
+          = t('link.index_member_role')
+
+  /検索結果部分
+.row
+  #result
+    == render "result"

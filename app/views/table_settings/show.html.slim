@@ -1,0 +1,66 @@
+p#notice = notice
+
+p
+  strong Table name:
+  = @table_setting.table_name
+p
+  strong Column name:
+  = @table_setting.column_name
+p
+  strong Attribute:
+  = @table_setting.attribute
+p
+  strong Standard:
+  = @table_setting.standard
+p
+  strong Use:
+  = @table_setting.use
+p
+  strong Custom name ja:
+  = @table_setting.custom_name_ja
+p
+  strong Custom name en:
+  = @table_setting.custom_name_en
+p
+  strong Description ja:
+  = @table_setting.description_ja
+p
+  strong Description en:
+  = @table_setting.description_en
+p
+  strong Required:
+  = @table_setting.required
+p
+  strong Default:
+  = @table_setting.default
+p
+  strong Sys lower:
+  = @table_setting.sys_lower
+p
+  strong Sys high:
+  = @table_setting.sys_high
+p
+  strong Custom lower:
+  = @table_setting.custom_lower
+p
+  strong Custom high:
+  = @table_setting.custom_high
+p
+  strong Format:
+  = @table_setting.format
+p
+  strong Currency:
+  = @table_setting.currency
+p
+  strong Order input:
+  = @table_setting.order_input
+p
+  strong Order list:
+  = @table_setting.order_list
+p
+  strong Order result:
+  = @table_setting.order_result
+
+= link_to 'Edit', edit_table_setting_path(@table_setting)
+'|
+= link_to 'Back', table_settings_path

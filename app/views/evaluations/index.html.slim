@@ -1,0 +1,118 @@
+.row
+  span.badge
+    |  評価を入力
+  span.badge
+    |  目標を入力
+.row
+  - flash.each do |name, msg|
+    div class="alert alert-#{ name == "notice" ? "success" : "danger"}"
+      a class="close" data-dismiss="alert" ×
+      = msg
+.row
+  .col-xs-12.col-md-6
+    i.fa.fa-pencil-square-o
+    |  自分の評価を入力する
+    table.table.table-hover
+      thead
+        tr
+          th
+          th
+      tbody
+        - @evaluation_settings.each do |evaluation_setting|
+          - if evaluation_setting.evaluation_event.started_on <= Date.today and evaluation_setting.evaluation_event.ended_on >= Date.today
+            tr
+              td
+                u
+                  = link_to entry_evaluation_header_path(evaluation_setting.evaluation_event_id,evaluation_setting:evaluation_setting.id) do
+                    = evaluation_setting.evaluation_event.name
+              td
+                - case evaluation_setting.progress
+                - when 0 then
+                  span.label.label-info
+                    | 目標設定中
+                - when 1 then
+                  span.label.label-warning
+                    | 目標承認中(一次)
+                - when 2 then
+                  span.label.label-warning
+                    | 目標承認中(二次)
+                - when 3 then
+                  span.label.label-primary
+                    | 目標確定
+                - when 4 then
+                  span.label.label-warning
+                    | 結果入力中(一次)
+                - when 5 then
+                  span.label.label-warning
+                    | 結果入力中(二次)
+                - else
+                  span.label.label-info
+                    | XXXX
+
+  .col-xs-12.col-md-6
+    i.fa.fa-clipboard
+    |  他者の評価を入力する
+    table.table.table-hover
+      thead
+        tr
+          th
+          th
+          th
+      tbody
+        - @evaluation_settings2.each do |evaluation_settings2|
+          - setting_id = evaluation_settings2.id
+
+          tr
+            td
+              = evaluation_settings2.evaluation_event.name
+            td
+              = image_tag(evaluation_settings2.user.image.url, :size => "30x30")
+              u
+                = link_to edit_evaluator_evaluation_header_path(evaluation_settings2.id) do
+                  = evaluation_settings2.user.name
+            td
+              - case evaluation_settings2.progress
+              - when 0 then
+                span.label.label-info
+                  | 目標設定中
+              - when 1 then
+                span.label.label-warning
+                  | 目標承認中(一次)
+              - when 2 then
+                span.label.label-warning
+                  | 目標承認中(二次)
+              - when 3 then
+                span.label.label-primary
+                  | 目標確定
+              - when 4 then
+                span.label.label-warning
+                  | 結果入力中(一次)
+              - when 5 then
+                span.label.label-warning
+                  | 結果入力中(二次)
+              - else
+                span.label.label-info
+                  | XXXX
+
+  br
+.row
+  .col-xs-12.col-md-6
+    i.fa.fa-database
+    |  過去の自分の結果を見る
+    table.table.table-hover
+      thead
+        tr
+          th
+          th
+      tbody
+        - @evaluation_settings.each do |evaluation_setting|
+          - if evaluation_setting.evaluation_event.ended_on < Date.today
+            tr
+              td
+                u
+                  = link_to entry_evaluation_header_path(evaluation_setting.evaluation_event_id) do
+                    = evaluation_setting.evaluation_event.name
+              td = evaluation_setting.user.name
+  .col-xs-12.col-md-6
+    i.fa.fa-cubes
+    |  過去の他者の結果を見る

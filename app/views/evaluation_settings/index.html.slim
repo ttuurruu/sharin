@@ -1,0 +1,27 @@
+.col-xs-12.col-md-12
+  h4
+    i.fa.fa-star-o
+      |  評価者設定
+
+  = search_form_for @q, :remote => true do |f|
+    .col-md-9.form-inline
+      = f.search_field :user_id_cont, class: "form-control col-md-6", placeholder: "コード"
+      '
+      = button_tag :type => "submit", name: 's', class: "btn btn-primary" do
+        i.fa.fa-search
+        |  検索
+  br
+
+  - flash.each do |name, msg|
+    br
+    div class="alert alert-#{ name == "notice" ? "success" : "danger"}"
+      a class="close" data-dismiss="alert" ×
+      = msg
+
+  #result
+    == render "result"
+
+  = link_to new_evaluation_setting_path, class: "btn btn-success"
+    i.fa.fa-plus-square-o
+    u
+      |      新規

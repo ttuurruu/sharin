@@ -1,0 +1,13 @@
+$("#<%= @id %>").hide();
+$("#<%= @id %>_edit").html("<%= escape_javascript(render 'edit') %>")
+
+$(function($){
+  $(".edit_member_name").validationEngine();
+  $('.input-group.date').datepicker({
+    language: 'ja',
+    format: "yyyy-mm-dd",
+    autoclose: true,
+    todayHighlight: true,
+    todayBtn: "linked"
+  });
+});

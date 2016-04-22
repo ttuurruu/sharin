@@ -1,0 +1,62 @@
+.col-md-12
+  .panel.panel-default
+    .panel-heading.text-right
+
+    .panel-body
+      = form_tag({action: 'update'}, {:method => 'patch'})
+
+        table.table
+          thead
+            tr
+              th = MemberTable.human_attribute_name('category')
+              th = MemberTable.human_attribute_name('code')
+              th = MemberTable.human_attribute_name('name')
+              th = MemberRoleDetail.human_attribute_name('use_type')
+              th = MemberRoleDetail.human_attribute_name('scope_type')
+              th = MemberRoleDetail.human_attribute_name('level_type')
+              th = MemberRoleDetail.human_attribute_name('time_type')
+              th = MemberRoleDetail.human_attribute_name('crud_type')
+          tbody
+            - @member_tables.each do |member_table|
+              /カテゴリ
+              - case member_table.hierarchy_level
+              /カテゴリ
+              - when 1 then
+                tr.success
+                  td = member_table.category
+                  td
+                  td
+                    i class = "fa #{member_table.font_awesome}"
+                    '
+                    = member_table.name
+                  td
+                  td
+                  td
+                  td
+                  td
+              /各機能
+              - when 2 then
+                tr
+                  td
+                  td = member_table.id
+                  td
+                    i class = "fa #{member_table.font_awesome}"
+                    '
+                    = member_table.name
+                  - if get_member_role_detail(1,member_table.id).blank?
+                    td = select :use_type, id = "#{member_table.id}", [["未使用", 0], ["利用する", 1]]
+                    td = select :scope_type, id = "#{member_table.id}", [[get_member_role_detail_scope_type(1), 1], [get_member_role_detail_scope_type(2), 2], [get_member_role_detail_scope_type(3), 3]]
+                    td = select :level_type, id = "#{member_table.id}", [[get_member_role_detail_level_type(1), 1], [get_member_role_detail_level_type(2), 2], [get_member_role_detail_level_type(3), 3]]
+                    td = select :time_type, id = "#{member_table.id}", [[get_member_role_detail_time_type(1), 1], [get_member_role_detail_time_type(2), 2], [get_member_role_detail_time_type(3), 3], [get_member_role_detail_time_type(4), 4]]
+                    td = select :crud_type, id = "#{member_table.id}", [[get_member_role_detail_crud_type(1), 1], [get_member_role_detail_crud_type(2), 2]]
+                  - else
+                    td.warning = select :use_type, id = "#{member_table.id}", [["未使用", 0], ["利用する", 1]], :selected => 1
+                    td = select :scope_type, id = "#{member_table.id}", [[get_member_role_detail_scope_type(1) , 1], [get_member_role_detail_scope_type(2), 2], [get_member_role_detail_scope_type(3), 3]], :selected => @member_role_details.scope_type
+                    td = select :level_type, id = "#{member_table.id}", [[get_member_role_detail_level_type(1), 1], [get_member_role_detail_level_type(2), 2], [get_member_role_detail_level_type(3), 3]], :selected => @member_role_details.level_type
+                    td = select :time_type, id = "#{member_table.id}", [[get_member_role_detail_time_type(1), 1], [get_member_role_detail_time_type(2), 2], [get_member_role_detail_time_type(3), 3], [get_member_role_detail_time_type(4), 4]], :selected => @member_role_details.time_type
+                    td = select :crud_type, id = "#{member_table.id}", [[get_member_role_detail_crud_type(1), 1], [get_member_role_detail_crud_type(2), 2]], :selected => @member_role_details.crud_type
+
+        = button_tag :type => "submit", class: "btn btn-success" do
+          i.fa.fa-floppy-o
+          '
+          = t('link.save')

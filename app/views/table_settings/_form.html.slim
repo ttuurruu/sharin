@@ -1,0 +1,69 @@
+= form_for @table_setting do |f|
+  - if @table_setting.errors.any?
+    #error_explanation
+      h2 = "#{pluralize(@table_setting.errors.count, "error")} prohibited this table_setting from being saved:"
+      ul
+        - @table_setting.errors.full_messages.each do |message|
+          li = message
+
+  .field
+    = f.label :table_name
+    = f.text_field :table_name
+  .field
+    = f.label :column_name
+    = f.text_field :column_name
+  .field
+    = f.label :attribute
+    = f.text_field :attribute
+  .field
+    = f.label :standard
+    = f.check_box :standard
+  .field
+    = f.label :use
+    = f.check_box :use
+  .field
+    = f.label :custom_name_ja
+    = f.text_field :custom_name_ja
+  .field
+    = f.label :custom_name_en
+    = f.text_field :custom_name_en
+  .field
+    = f.label :description_ja
+    = f.text_field :description_ja
+  .field
+    = f.label :description_en
+    = f.text_field :description_en
+  .field
+    = f.label :required
+    = f.check_box :required
+  .field
+    = f.label :default
+    = f.text_field :default
+  .field
+    = f.label :sys_lower
+    = f.text_field :sys_lower
+  .field
+    = f.label :sys_high
+    = f.text_field :sys_high
+  .field
+    = f.label :custom_lower
+    = f.text_field :custom_lower
+  .field
+    = f.label :custom_high
+    = f.text_field :custom_high
+  .field
+    = f.label :format
+    = f.text_field :format
+  .field
+    = f.label :currency
+    = f.text_field :currency
+  .field
+    = f.label :order_input
+    = f.number_field :order_input
+  .field
+    = f.label :order_list
+    = f.number_field :order_list
+  .field
+    = f.label :order_result
+    = f.number_field :order_result
+  .actions = f.submit

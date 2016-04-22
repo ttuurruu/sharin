@@ -1,0 +1,11 @@
+$(function($){
+  if($('input[name=options]:checked').val() == '1'){
+    $("#result").html(
+        "<%= escape_javascript(render :partial => 'result') %>"
+    );
+  }else{
+    $("#result").html(
+        "<%= escape_javascript(render :partial => 'result2') %>"
+    );
+  };
+});

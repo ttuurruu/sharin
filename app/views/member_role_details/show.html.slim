@@ -1,0 +1,24 @@
+p#notice = notice
+
+p
+  strong Member table:
+  = @member_role_detail.member_table_id
+p
+  strong Use type:
+  = @member_role_detail.use_type
+p
+  strong Scope type:
+  = @member_role_detail.scope_type
+p
+  strong Level type:
+  = @member_role_detail.level_type
+p
+  strong Time type:
+  = @member_role_detail.time_type
+p
+  strong Crud type:
+  = @member_role_detail.crud_type
+
+= link_to 'Edit', edit_member_role_detail_path(@member_role_detail)
+'|
+= link_to 'Back', member_role_details_path

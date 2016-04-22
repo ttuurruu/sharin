@@ -1,0 +1,25 @@
+- url_options = {action: :index}
+- html_options = {remote: true, method: :get}
+
+.col-xs-12.col-md-12
+  .table-responsive
+    table.table.table-hover
+      thead
+        tr
+          - view_columns.each do |view_column|
+            th = sort_link(@q, view_column.column_name, eval("view_column.config_column.custom_name_#{@locale}.blank?") ? eval("view_column.config_column.default_name_#{@locale}") : eval("view_column.config_column.custom_name_#{@locale}") , url_options, html_options)
+
+      tbody
+        - results.each do |result|
+          tr
+            - view_columns.each do |view_column|
+              - case view_column.column_name
+              - when "user_id" then
+                td
+                  u
+                    = link_to controller: :members, action: "profile", id: result.user_id, member_table_id: "103" do
+                      = image_tag(get_user_image(result.user_id), :size => "30x30")
+                      '
+                      = get_member_name(result.user_id)
+              - else
+                td = eval("result." + "#{view_column.column_name}")

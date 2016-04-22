@@ -1,0 +1,21 @@
+= form_for @ability_requirement do |f|
+  - if @ability_requirement.errors.any?
+    #error_explanation
+      h2 = "#{pluralize(@ability_requirement.errors.count, "error")} prohibited this ability_requirement from being saved:"
+      ul
+        - @ability_requirement.errors.full_messages.each do |message|
+          li = message
+
+  .field
+    = f.label :category
+    = f.number_field :category
+  .field
+    = f.label :code
+    = f.text_field :code
+  .field
+    = f.label :title
+    = f.text_field :title
+  .field
+    = f.label :content
+    = f.text_field :content
+  .actions = f.submit

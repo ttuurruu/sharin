@@ -1,0 +1,33 @@
+p#notice = notice
+
+p
+  strong Code:
+  = @member_table.code
+p
+  strong Name:
+  = @member_table.name
+p
+  strong Category:
+  = @member_table.category
+p
+  strong Hierarchy level:
+  = @member_table.hierarchy_level
+p
+  strong Controller:
+  = @member_table.controller
+p
+  strong Action:
+  = @member_table.action
+p
+  strong Param:
+  = @member_table.param
+p
+  strong Font awesome:
+  = @member_table.font_awesome
+p
+  strong Description:
+  = @member_table.description
+
+= link_to 'Edit', edit_member_table_path(@member_table)
+'|
+= link_to 'Back', member_tables_path

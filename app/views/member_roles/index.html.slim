@@ -1,0 +1,28 @@
+.row
+  h4.text-left
+    i.fa.fa-cog
+    '
+    | 権限マスタ
+
+.row
+  .col-xs-12.col-md-8
+    = search_form_for @q, :remote => true do |f|
+      .col-md-9.form-inline
+        = f.search_field :name_cont, class: "form-control"
+        '
+        = button_tag :type => "submit", name: 's', class: "btn btn-primary" , id: "search_btn" do
+          i.fa.fa-search
+          |  検索
+
+  .col-xs-12.col-md-4
+    .text-right
+      u
+        = link_to member_roles_path
+          i.fa.fa-plus-square-o
+          '
+          = t('link.new_member_role')
+
+/検索結果部分
+.row
+  #result
+    == render "result"

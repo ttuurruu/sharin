@@ -1,0 +1,37 @@
+h1 Listing member_tables
+
+table
+  thead
+    tr
+      th Code
+      th Name
+      th Category
+      th Hierarchy level
+      th Controller
+      th Action
+      th Param
+      th Font awesome
+      th Description
+      th
+      th
+      th
+
+  tbody
+    - @member_tables.each do |member_table|
+      tr
+        td = member_table.code
+        td = member_table.name
+        td = member_table.category
+        td = member_table.hierarchy_level
+        td = member_table.controller
+        td = member_table.action
+        td = member_table.param
+        td = member_table.font_awesome
+        td = member_table.description
+        td = link_to 'Show', member_table
+        td = link_to 'Edit', edit_member_table_path(member_table)
+        td = link_to 'Destroy', member_table, data: {:confirm => 'Are you sure?'}, :method => :delete
+
+br
+
+= link_to 'New Member table', new_member_table_path

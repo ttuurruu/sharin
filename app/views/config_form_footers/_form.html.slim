@@ -1,0 +1,12 @@
+= form_for @config_form_footer do |f|
+  - if @config_form_footer.errors.any?
+    #error_explanation
+      h2 = "#{pluralize(@config_form_footer.errors.count, "error")} prohibited this config_form_footer from being saved:"
+      ul
+        - @config_form_footer.errors.full_messages.each do |message|
+          li = message
+
+  .field
+    = f.label :form_id
+    = f.number_field :form_id
+  .actions = f.submit

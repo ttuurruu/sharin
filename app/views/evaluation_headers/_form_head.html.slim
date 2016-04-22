@@ -1,0 +1,43 @@
+h4
+  = @evaluation_event.name
+  '
+  - case @evaluation_header.evaluation_setting.progress
+  - when 0 then
+    span.label.label-info
+      | 目標設定中
+  - when 1 then
+    span.label.label-warning
+      | 目標承認中(一次)
+  - when 2 then
+    span.label.label-warning
+      | 目標承認中(二次)
+  - when 3 then
+    span.label.label-primary
+      | 目標確定
+  - when 4 then
+    span.label.label-warning
+      | 結果入力(一次)
+  - when 5 then
+    span.label.label-warning
+      | 結果入力(二次)
+  - else
+    span.label.label-info
+      | XXXX
+
+table.table-bordered
+  tbody
+    tr
+      td
+        | 開催期間
+      td
+        = @evaluation_event.started_on
+        | ～
+        = @evaluation_event.ended_on
+br
+| 一次評価者
+= image_tag(@evaluation_evaluator1.user.image.url, :size => "30x30")
+= @evaluation_evaluator1.user.name
+'
+| 二次評価者
+= image_tag(@evaluation_evaluator2.user.image.url, :size => "30x30")
+= @evaluation_evaluator2.user.name

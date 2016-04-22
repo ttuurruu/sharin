@@ -1,0 +1,59 @@
+h3
+  = @evaluation_event.name
+  span.label.label-warning
+    | 準備中
+  span.label.label-info
+    | 目標設定中
+  span.label.label-primary
+    | 評価中
+  span.label.label-success
+    | 完了
+  span.label.label-danger
+    | Danger
+  span.label.label-default
+    | Default
+
+.row
+  .alert.alert-warning role="alert"
+    |  対象者の登録が必要です。
+    = link_to evaluation_settings_path do
+      | 対象者設定
+    |  から設定してください。
+
+.row
+  .col-xs-12.col-md-4
+    .panel.panel-success
+      .panel-heading
+        | 概要
+      .panel-body
+        | 現在は
+        strong
+          |準備中
+        | です。
+        button type="button" class="btn btn-info"
+          |     目標設定を開始する
+        '
+        i.fa.fa-question-circle
+        hr
+        = @evaluation_event.started_on
+        |  ～
+        = @evaluation_event.ended_on
+        br
+        |参加者
+        u
+          = link_to evaluation_settings_path do
+            = @evaluation_setting_count[@evaluation_event.id]
+            |人
+        br
+        | 目標管理
+        br
+        | XXXXXXX
+
+  .col-xs-12.col-md-8
+    .panel.panel-success
+      .panel-heading
+        | 進捗状況
+      .panel-body
+        == render "result_progress"
+.row
+    == render "result_summary"

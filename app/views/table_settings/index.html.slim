@@ -1,0 +1,59 @@
+h1 Listing table_settings
+
+table
+  thead
+    tr
+      th Table name
+      th Column name
+      th Attribute
+      th Standard
+      th Use
+      th Custom name ja
+      th Custom name en
+      th Description ja
+      th Description en
+      th Required
+      th Default
+      th Sys lower
+      th Sys high
+      th Custom lower
+      th Custom high
+      th Format
+      th Currency
+      th Order input
+      th Order list
+      th Order result
+      th
+      th
+      th
+
+  tbody
+    - @table_settings.each do |table_setting|
+      tr
+        td = table_setting.table_name
+        td = table_setting.column_name
+        td = table_setting.attribute
+        td = table_setting.standard
+        td = table_setting.use
+        td = table_setting.custom_name_ja
+        td = table_setting.custom_name_en
+        td = table_setting.description_ja
+        td = table_setting.description_en
+        td = table_setting.required
+        td = table_setting.default
+        td = table_setting.sys_lower
+        td = table_setting.sys_high
+        td = table_setting.custom_lower
+        td = table_setting.custom_high
+        td = table_setting.format
+        td = table_setting.currency
+        td = table_setting.order_input
+        td = table_setting.order_list
+        td = table_setting.order_result
+        td = link_to 'Show', table_setting
+        td = link_to 'Edit', edit_table_setting_path(table_setting)
+        td = link_to 'Destroy', table_setting, data: {:confirm => 'Are you sure?'}, :method => :delete
+
+br
+
+= link_to 'New Table setting', new_table_setting_path

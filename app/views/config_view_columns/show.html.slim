@@ -1,0 +1,18 @@
+p#notice = notice
+
+p
+  strong Config view:
+  = @config_view_column.config_view_id
+p
+  strong Column name:
+  = @config_view_column.column_name
+p
+  strong Visible:
+  = @config_view_column.visible
+p
+  strong View order:
+  = @config_view_column.view_order
+
+= link_to 'Edit', edit_config_view_column_path(@config_view_column)
+'|
+= link_to 'Back', config_view_columns_path

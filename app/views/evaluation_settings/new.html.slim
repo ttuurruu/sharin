@@ -1,0 +1,44 @@
+.col-xs-12.col-md-8.col-md-offset-2
+  = form_for @evaluation_setting do |f|
+    .panel.panel-info
+      .panel-heading
+        h3.panel-title 新規登録
+      .panel-body
+        p 評価者設定の新規登録をします。
+
+    .form-group
+      = f.label :evaluation_event_id
+      br
+      = f.collection_select(:evaluation_event_id, @evaluation_events, :id, :name)
+      span.help-block XXXXXXX
+    .form-group
+      = f.label :user_id
+      br
+      = f.collection_select( :user_id, @users , :id, :name )
+      span.help-block XXXXXXX
+
+    = f.fields_for :evaluation_evaluators do | evaluation_evaluator |
+      = evaluation_evaluator.hidden_field :path_level
+      .form-group
+        = f.label :evaluator1
+        br
+        .evaluator
+          = evaluation_evaluator.collection_select(:user_id, @users , :id , :name , {},{id: "evaluator1"} )
+        span.help-block XXXXXXX
+    .form-group
+      = f.label :objective_id
+      br
+      = f.collection_select(:objective_id, @objectives, :id, :title, class: "form-control")
+      span.help-block XXXXXXX
+    .form-group
+      = f.label :ability_grouping_id
+      = f.number_field :ability_grouping_id, class: "form-control"
+      span.help-block XXXXXXX
+
+    = button_tag :type => "submit", class: "btn btn-success" do
+      i.fa.fa-floppy-o
+      |  更新
+    '
+    = link_to evaluation_settings_path, class: "btn btn-danger"
+      i.fa.fa-close
+      |  中止

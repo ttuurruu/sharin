@@ -1,0 +1,9 @@
+.col-xs-12.col-md-4
+  = paginate results , :remote => true
+  br
+  = results.total_count
+  |  件中
+  = results.offset_value + 1
+  |  〜
+  = results.offset_value + results.length
+  |  件を表示

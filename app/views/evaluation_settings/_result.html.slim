@@ -1,0 +1,52 @@
+br
+= paginate @evaluation_settings, :remote => true
+br
+= @evaluation_settings.total_count
+|  件中
+= @evaluation_settings.offset_value + 1
+|  〜
+= @evaluation_settings.offset_value + @evaluation_settings.length
+|  件を表示
+
+- url_options = {action: :index}
+- html_options = {remote: true, method: :get}
+
+.col-xs-12.col-md-12
+  table.table.table-hover
+    thead
+      tr
+        th  = EvaluationSetting.human_attribute_name('evaluation_event_id')
+        th  = EvaluationSetting.human_attribute_name('user_id')
+        th  = EvaluationSetting.human_attribute_name('evaluation_evaluator1')
+        th  = EvaluationSetting.human_attribute_name('evaluation_evaluator2')
+        th  = EvaluationSetting.human_attribute_name('evaluation_evaluator3')
+        th  = EvaluationSetting.human_attribute_name('objective_id')
+        th = EvaluationSetting.human_attribute_name('ability_grouping_id')
+        th
+        th
+
+    tbody
+      - @evaluation_settings.each do |evaluation_setting|
+        tr
+          td = evaluation_setting.evaluation_event.name
+          td
+            = image_tag(evaluation_setting.user.image.url, :size => "30x30")
+            u
+              = link_to edit_evaluation_setting_path(evaluation_setting) do
+                = evaluation_setting.user.name
+          - @evaluation_evaluators.each do |evaluation_evaluator|
+            - if evaluation_setting.id == evaluation_evaluator.evaluation_setting_id
+              - if evaluation_evaluator.path_level == 1
+                td
+                  = image_tag(evaluation_evaluator.user.image.url, :size => "30x30")
+                  = evaluation_evaluator.user.name
+              - if evaluation_evaluator.path_level == 2
+                td
+                  = image_tag(evaluation_evaluator.user.image.url, :size => "30x30")
+                  = evaluation_evaluator.user.name
+              - if evaluation_evaluator.path_level == 3
+                td = evaluation_evaluator.user.name
+          td = evaluation_setting.objective.title
+          td = evaluation_setting.ability_grouping_id
+          td = link_to 'Edit', edit_evaluation_setting_path(evaluation_setting)
+          td = link_to 'Destroy', evaluation_setting, data: {:confirm => 'Are you sure?'}, :method => :delete

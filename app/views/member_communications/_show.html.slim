@@ -1,0 +1,23 @@
+== render 'shared/member_navi'
+
+.row
+#alert
+
+div id = "#{@records.id}"
+  .panel.panel-info
+    .panel-heading.text-right
+      = link_to edit_member_communication_path(@records.id) , :remote => true do
+        i.fa.fa-pencil-square-o
+        '
+        u
+          = t('link.edit')
+    .panel-body
+      - @table_settings.each do |table_setting|
+        .col-xs-12.col-md-3
+          b.text-left
+            = table_setting.custom_name_ja.blank? ? MemberCommunication.human_attribute_name(table_setting.column_name) : table_setting.custom_name_ja
+        .col-xs-12.col-md-3
+          .text-left
+            = @records["#{table_setting.column_name}"].blank? ? "-" : @records["#{table_setting.column_name}"]
+
+div id = "#{@records.id}_edit"

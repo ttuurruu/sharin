@@ -1,0 +1,7 @@
+100010004,members,profile,103,,,false,false,false,true
+100103001,member_systems,index,,,,false,false,false,true
+100103003,member_systems,new,,新規,いいいい,false,true,true,false
+100103004,member_systems,edit,,編集,うううう,false,true,true,false
+900001001,login,index,,,,false,true,true,false
+900002003,users,new,,新規,ああああ,true,true,true,false
+900003003,user_passwords,new,,,,false,true,true,false

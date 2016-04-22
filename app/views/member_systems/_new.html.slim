@@ -1,0 +1,10 @@
+.panel.panel-success
+  .panel-heading
+    h3.panel-title
+      = t('link.new_history')
+  .panel-body
+    = form_for(@record, remote: true) do |f|
+      .row
+        .form-horizontal.col-xs-12.col-md-8
+          == render :partial => 'shared/form_column', :locals => {:f => f, form_columns: @form_columns}
+          == render :partial => 'shared/form_footer', :locals => {:f => f, form_footers: @form_footers}

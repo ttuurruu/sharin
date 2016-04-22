@@ -1,0 +1,53 @@
+= paginate @users , :remote => true
+br
+= @users.total_count
+|  件中
+= @users.offset_value + 1
+|  〜
+= @users.offset_value + @users.length
+|  件を表示
+
+- url_options = { action: :index }
+- html_options = { remote: true, method: :get }
+
+table.table.table-hover
+  thead
+    tr
+      th = sort_link(@q, :code, User.human_attribute_name('code'), url_options, html_options)
+      th = sort_link(@q, :name, MemberName.human_attribute_name('name'), url_options, html_options)
+      th = User.human_attribute_name('email')
+      th = sort_link(@q, :enable, User.human_attribute_name('enable'), url_options, html_options)
+      th = sort_link(@q, :enable, User.human_attribute_name('created_at'), url_options, html_options)
+      th = sort_link(@q, :enable, User.human_attribute_name('updated_at'), url_options, html_options)
+      th
+
+  tbody
+    - @users.each do |user|
+      tr
+        td
+          = user.code
+        td
+          u
+            = link_to ({controller: :members, action: "profile", id: user.id, code: "101"}), {:target => "_blank"} do
+              = image_tag(user.image.url, :size => "30x30")
+              '
+              = get_member_name user.id
+              '
+              i.fa.fa-external-link
+        td
+          = user.email
+        td
+          - case user.enable
+          - when true then
+            span.label.label-info
+              | active
+          - else
+            span.label.label-default
+              | inactive
+        td
+          = user.created_at
+        td
+          = user.updated_at
+        td
+          = link_to delete_user_path(user), data: {:confirm => 'Are you sure?'}, class: "btn btn-default" do
+            i.fa.fa-trash-o

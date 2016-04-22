@@ -1,0 +1,69 @@
+p#notice = notice
+
+p
+  strong Config view:
+  = @config_form_column.config_view_id
+p
+  strong Column name:
+  = @config_form_column.column_name
+p
+  strong Attribute type:
+  = @config_form_column.attribute_type
+p
+  strong Standard:
+  = @config_form_column.standard
+p
+  strong Visible:
+  = @config_form_column.visible
+p
+  strong Order:
+  = @config_form_column.order
+p
+  strong Custom name ja:
+  = @config_form_column.custom_name_ja
+p
+  strong Custom name en:
+  = @config_form_column.custom_name_en
+p
+  strong Custom name zh:
+  = @config_form_column.custom_name_zh
+p
+  strong Description ja:
+  = @config_form_column.description_ja
+p
+  strong Description en:
+  = @config_form_column.description_en
+p
+  strong Description zh:
+  = @config_form_column.description_zh
+p
+  strong Required:
+  = @config_form_column.required
+p
+  strong Default:
+  = @config_form_column.default
+p
+  strong Sys lower:
+  = @config_form_column.sys_lower
+p
+  strong Sys high:
+  = @config_form_column.sys_high
+p
+  strong Custom lower:
+  = @config_form_column.custom_lower
+p
+  strong Custom high:
+  = @config_form_column.custom_high
+p
+  strong Grid class label:
+  = @config_form_column.grid_class_label
+p
+  strong Grid class value:
+  = @config_form_column.grid_class_value
+p
+  strong Data source:
+  = @config_form_column.data_source
+
+= link_to 'Edit', edit_config_form_column_path(@config_form_column)
+'|
+= link_to 'Back', config_form_columns_path

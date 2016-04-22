@@ -1,0 +1,9 @@
+#list
+  - case @function.data_type
+  - when 1
+    /置換型
+    == render :template => "#{@function.controller}/_show"
+  - when 2
+    /履歴型
+    == render :template => "#{@function.controller}/_list"
+  - else

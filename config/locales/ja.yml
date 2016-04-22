@@ -1,0 +1,392 @@
+ja:
+  login:
+    index:
+      header_title:
+      header_description:
+      code: コード
+      password: パスワード
+
+# ボタン・リンク
+  link:
+    new: 新規
+    show: 詳細
+    edit: 編集
+    delete: 削除
+    save: 登録
+    cancel: 中止
+    send: 送信
+    search: 検索
+    copy: コピー
+    login: ログイン
+    password_reset: パスワードを忘れた方はこちら
+    registers: アカウントをお持ちでない方はこちら
+    to_login: 既にアカウントをお持ちの方はこちら
+    back_to_memberlist: メンバーリストに戻る
+    new_history: 新しい履歴を追加する
+    new_member: 新しいメンバーを追加する
+    new_member_role: 新しい権限を追加する
+    index_member_role: 権限の新規作成・更新
+  veiw_control:
+    open_all: 全て開く
+    close_all: 全て閉じる
+    file_export: ファイルに出力する
+
+  #プルダウン
+  enumerize:
+    member_system:
+      enable:
+        enable: OK
+        anenable: NG
+
+# メッセージ
+  message:
+    save: 登録しました。
+    update: 更新しました。
+    delete_alert: 削除しますか？
+    delete: 削除しました。
+    login_error: ユーザコードまたはパスワードが不正です
+    account_error: アカウントが無効です
+
+# 項目名
+# model
+  activerecord:
+    models:
+    attributes:
+      evaluation_ebvaluator:
+        path_level: 承認順序
+      evaluation_event:
+        started_on: 開始日
+        ended_on: 終了日
+        name: 名前
+        category: 評価カテゴリ
+        rate_max: 評価点(最大値)
+        rate_min: 評価点(最小値)
+        two_phase: 2次評価者あり
+        objective: 目標設定あり
+        feedback: フィードバックコメント入力あり
+        result_entry: XXX
+        enable: 有効/無効
+      evaluation_header:
+        progress: 進捗ステータス
+        mbo_rate_self: MBO総合評価点(自己)
+        mbo_rate_primary: MBO総合評価点(一次評価者)
+        mbo_rate_secondary: MBO総合評価点(二次評価者)
+        mbo_rate_fix: MBO総合評価点(最終)
+        mbo_coment_self: MBO総合コメント(自己)
+        mbo_coment_fix: MBO総合コメント(最終)
+        competency_rate_self: コンピテンシー総合評価点(自己)
+        competency_rate_primary: コンピテンシー総合評価点(一次評価者)
+        competency_rate_secondary: コンピテンシー総合評価点(二次評価者)
+        competency_rate_fix: コンピテンシー総合評価点(最終)
+        competency_coment_self: コンピテンシー総合コメント(自己)
+        competency_coment_fix: コンピテンシー総合コメント(最終)
+        total_rate_self: 合計総合評価点(自己)
+        total_rate_primary: 合計総合評価点(一次評価者)
+        total_rate_secondary: 合計総合評価点(二次評価者)
+        total_rate_fix: 合計総合評価点(最終)
+        total_coment_self: 合計総合コメント(自己)
+        total_coment_fix: 合計総合コメント(最終)
+      evaluation_detail:
+        category: 評価種類
+        title: タイトル
+        content: 内容
+        weight: ウェイト
+        result_rate_self: 結果評価点（自己）
+        result_content_self: 結果コメント（自己）
+        result_rate_primary: 結果評価点（一次評価者）
+        result_content_primary: 結果コメント（一次評価者）
+        result_rate_secondary: 結果評価点（二次評価者）
+        result_content_secondary: 結果コメント（二次評価者）
+      evaluation_setting:
+        evaluation_event_id: 評価イベント名
+        user_id: 被評価者
+        evaluation_evaluator1: 一次評価者
+        evaluation_evaluator2: 二次評価者
+        evaluation_evaluator3: 閲覧者
+        objective_id: グループ目標
+        ability_grouping_id: コンピテンシーグループ
+      member_communication:
+        email1: Eメール1
+        email2: Eメール2
+        email3: Eメール3
+        email4: Eメール4
+        email5: Eメール5
+        number1: 番号1
+        number2: 番号2
+        number3: 番号3
+        number4: 番号4
+        number5: 番号5
+        id1: ID1
+        id2: ID2
+        id3: ID3
+        id4: ID4
+        id5: ID5
+      member_name:
+        started_on: 開始日
+        ended_on: 終了日
+        name: 氏名
+        name_katakana: 氏名(カナ)
+        name_romaji: 氏名(ローマ字)
+        register: 戸籍氏名
+        register_katakana: 戸籍氏名(カナ)
+        register_romaji: 戸籍氏名(ローマ字)
+        memo: 備考
+        deleted_at: 削除日時
+        created_at: 作成日時
+        updated_at: 更新日時
+      member_role:
+        member_role_id: 参照権限
+      member_role_detail:
+        code: コード
+        use_type: 利用有無
+        scope_type: 参照範囲
+        level_type: 参照レベル
+        time_type: 参照期間
+        crud_type: 編集可否
+      member_table:
+        code: コード
+        name: 名前
+        category: カテゴリ
+      objective:
+        code: コード
+        title: タイトル
+        content: 内容
+        enable: 有効/無効
+      user:
+        code: コード
+        use_start: 利用開始日
+        created_at: 登録日時
+        updated_at: 最終更新日時
+      user_image:
+        image: 画像
+      user_password:
+        password: パスワード
+        password_confirmation: パスワード(確認用)
+      register:
+        email: Eメール
+        form_title: パスワード再設定
+        form_description: |
+         パスワードを忘れてしまった方は登録したメールアドレスを入力して「送信する」ボタンをクリックしてください。
+         パスワード再設定のメールが届きますのでメールに記載された手順でパスワードの再設定を進めてください。
+
+# description
+  description:
+    member_names:
+      started_on: XX標準説明XX
+      ended_on: XX標準説明XX
+      name: XX標準説明XX
+      name_katakana: XX標準説明XX
+      name_romaji: XX標準説明XX
+      register: XX標準説明XX
+      register_katakana: XX標準説明XX
+      register_romaji: XX標準説明XX
+      memo: XX標準説明XX
+    member_role:
+      member_role_id: 参照権限を選択
+    register:
+      email: 登録したメールアドレスを入力してください。
+    user:
+      code: ログイン時に利用するユーザコード
+      use_start: システムの利用を開始する日
+      created_at: 登録日時
+      updated_at: 最終更新日時
+    user_image:
+      image: 顔写真を登録
+    user_password:
+      password: ログイン時に利用するパスワード
+      password_confirmation: 確認のために同じパスワードを入力
+
+# common
+  date:
+    aubbr_day_names:
+    - 日
+    - 月
+    - 火
+    - 水
+    - 木
+    - 金
+    - 土
+    abbr_month_names:
+    -
+    - 1月
+    - 2月
+    - 3月
+    - 4月
+    - 5月
+    - 6月
+    - 7月
+    - 8月
+    - 9月
+    - 10月
+    - 11月
+    - 12月
+    day_names:
+    - 日曜日
+    - 月曜日
+    - 火曜日
+    - 水曜日
+    - 木曜日
+    - 金曜日
+    - 土曜日
+    formats:
+      default: "%Y/%m/%d"
+      long: "%Y年%m月%d日(%a)"
+      short: "%m/%d"
+    month_names:
+    -
+    - 1月
+    - 2月
+    - 3月
+    - 4月
+    - 5月
+    - 6月
+    - 7月
+    - 8月
+    - 9月
+    - 10月
+    - 11月
+    - 12月
+    order:
+    - :year
+    - :month
+    - :day
+  datetime:
+    distance_in_words:
+      about_x_hours:
+        one: 約1時間
+        other: 約%{count}時間
+      about_x_months:
+        one: 約1ヶ月
+        other: 約%{count}ヶ月
+      about_x_years:
+        one: 約1年
+        other: 約%{count}年
+      almost_x_years:
+        one: 1年弱
+        other: "%{count}年弱"
+      half_a_minute: 30秒前後
+      less_than_x_minutes:
+        one: 1分以内
+        other: "%{count}分未満"
+      less_than_x_seconds:
+        one: 1秒以内
+        other: "%{count}秒未満"
+      over_x_years:
+        one: 1年以上
+        other: "%{count}年以上"
+      x_days:
+        one: 1日
+        other: "%{count}日"
+      x_minutes:
+        one: 1分
+        other: "%{count}分"
+      x_months:
+        one: 1ヶ月
+        other: "%{count}ヶ月"
+      x_seconds:
+        one: 1秒
+        other: "%{count}秒"
+    prompts:
+      day: 日
+      hour: 時
+      minute: 分
+      month: 月
+      second: 秒
+      year: 年
+  errors:
+    format: "%{attribute}%{message}"
+    messages:
+      accepted: にチェックをしてください。
+      blank: を入力してください。
+      present: は入力しないでください。
+      confirmation: と%{attribute}の入力が一致しません。
+      empty: を入力してください。
+      equal_to: は%{count}にしてください。
+      even: は偶数にしてください。
+      exclusion: は予約されています。
+      greater_than: は%{count}より大きい値にしてください。
+      greater_than_or_equal_to: は%{count}以上の値にしてください。
+      inclusion: は一覧にありません。
+      invalid: は不正な値です。
+      less_than: は%{count}より小さい値にしてください。
+      less_than_or_equal_to: は%{count}以下の値にしてください。
+      not_a_number: は数値で入力してください。
+      not_an_integer: は整数で入力してください。
+      odd: は奇数にしてください。
+      record_invalid: バリデーションに失敗しました。 %{errors}
+      restrict_dependent_destroy: "%{record}が存在しているので削除できません。"
+      taken: はすでに存在します。
+      too_long: は%{count}文字以内で入力してください。
+      too_short: は%{count}文字以上で入力してください。
+      wrong_length: は%{count}文字で入力してください。
+      other_than: は%{count}以外の値にしてください。
+    template:
+      body: 次の項目を確認してください。
+      header:
+        one: "%{model}にエラーが発生しました。"
+        other: "%{model}に%{count}個のエラーが発生しました。"
+  helpers:
+    select:
+      prompt: 選択してください。
+    submit:
+      create: 登録する
+      submit: 保存する
+      update: 更新する
+  number:
+    currency:
+      format:
+        delimiter: ","
+        format: "%n%u"
+        precision: 0
+        separator: "."
+        significant: false
+        strip_insignificant_zeros: false
+        unit: 円
+    format:
+      delimiter: ","
+      precision: 3
+      separator: "."
+      significant: false
+      strip_insignificant_zeros: false
+    human:
+      decimal_units:
+        format: "%n %u"
+        units:
+          billion: 十億
+          million: 百万
+          quadrillion: 千兆
+          thousand: 千
+          trillion: 兆
+          unit: ''
+      format:
+        delimiter: ''
+        precision: 3
+        significant: true
+        strip_insignificant_zeros: true
+      storage_units:
+        format: "%n%u"
+        units:
+          byte: バイト
+          gb: ギガバイト
+          kb: キロバイト
+          mb: メガバイト
+          tb: テラバイト
+    percentage:
+      format:
+        delimiter: ''
+        format: "%n%"
+    precision:
+      format:
+        delimiter: ''
+  support:
+    array:
+      last_word_connector: と
+      two_words_connector: と
+      words_connector: と
+  time:
+    am: 午前
+    formats:
+      default: "%Y/%m/%d %H:%M:%S"
+      long: "%Y年%m月%d日(%a) %H時%M分%S秒 %z"
+      short: "%y/%m/%d %H:%M"
+    pm: 午後

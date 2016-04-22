@@ -1,0 +1,68 @@
+.col-xs-12.col-md-8.col-md-offset-2
+  = form_for @evaluation_event do |f|
+    - if @evaluation_event.errors.any?
+      #error_explanation
+        h2 = "#{pluralize(@evaluation_event.errors.count, "error")} prohibited this evaluation_event from being saved:"
+        ul
+          - @evaluation_event.errors.full_messages.each do |message|
+            li = message
+
+    .form-group
+      = f.label :started_on
+      = f.text_field :started_on, data: {:date_format => 'YYYY/MM/DD'}, class: "form-control validate[required,custom[date]]"
+      span.help-block XXXXXXX
+    .form-group
+      = f.label :ended_on
+      = f.text_field :ended_on, data: {:date_format => 'YYYY/MM/DD'}, class: "form-control validate[required,custom[date]]"
+      span.help-block XXXXXXX
+    .form-group
+      = f.label :name
+      = f.text_field :name, class: "form-control validate[required]"
+      span.help-block XXXXXXX
+    .form-group
+      = f.label :category
+      br
+      = f.select :category, {'目標管理' => 1, 'コンピテンシー' => 2}, :selected => 1, class: "form-control"
+      span.help-block XXXXXXX
+    .form-group
+      = f.label :rate_max
+      br
+      = f.select :rate_max, {'3' => 3, '4' => 4, '5' => 5, '6' => 6, '7' => 7, '8' => 8, '9' => 9, '10' => 10}, :selected => 5, class: "form-control"
+      span.help-block XXXXXXX
+    .form-group
+      = f.label :rate_min
+      br
+      = f.select :rate_min, {'0' => 0, '1' => 1}, :selected => 1, class: "form-control"
+      span.help-block XXXXXXX
+    .form-group
+      = f.label :two_phase
+      br
+      = f.radio_button :two_phase, 1, :checked => true
+      = f.label :two_phase1, 'あり'
+      = f.radio_button :two_phase, 0
+      = f.label :two_phase2, 'なし'
+      span.help-block XXXXXXX
+    .form-group
+      = f.label :objective
+      br
+      = f.radio_button :objective, 1, :checked => true
+      = f.label :objective1, 'あり'
+      = f.radio_button :objective, 0
+      = f.label :objective2, 'なし'
+      span.help-block XXXXXXX
+    .form-group
+      = f.label :feedback
+      br
+      = f.radio_button :feedback, 1, :checked => true
+      = f.label :feedback1, 'あり'
+      = f.radio_button :feedback, 0
+      = f.label :feedback2, 'なし'
+      span.help-block XXXXXXX
+
+    = button_tag :type => "submit", class: "btn btn-success" do
+      i.fa.fa-floppy-o
+      |  登録
+    '
+    = link_to evaluation_events_path, class: "btn btn-danger"
+      i.fa.fa-close
+      |  中止

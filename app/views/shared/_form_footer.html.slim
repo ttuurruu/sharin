@@ -1,0 +1,23 @@
+- form_footers.each do |form_footer|
+
+  div class = "#{form_footer.grid_class}"
+
+    - case form_footer.attribute_type
+
+    - when "submit" then
+      = button_tag :type => "submit", class: "#{form_footer.column_class}" do
+        i class = "fa #{form_footer.font_awesome}"
+        '
+        = t("link.#{form_footer.locales_path}")
+
+    - when "link" then
+      = link_to ({controller: form_footer.controller , action: "#{form_footer.action}"}), {class: "#{form_footer.column_class}"} do
+        i class = "fa #{form_footer.font_awesome}"
+        '
+        = t("link.#{form_footer.locales_path}")
+
+    - when "link_ajax" then
+      = link_to ({controller: form_footer.controller, action: "#{form_footer.action}"}), {class: "#{form_footer.column_class}", :remote => true }  do
+        i class = "fa #{form_footer.font_awesome}"
+        '
+        = t("link.#{form_footer.locales_path}")

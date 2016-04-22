@@ -1,0 +1,13 @@
+= form_for(@record, remote: true) do |f|
+  /== render :partial => 'shared/form', :locals => {:f => f, forms: @forms}
+
+  .row
+    .form-horizontal.col-xs-12.col-md-8
+      == render :partial => 'shared/form_column', :locals => {:f => f, form_columns: @form_columns}
+      == render :partial => 'shared/form_footer', :locals => {:f => f, form_footers: @form_footers}
+
+      .col-md-8.col-md-offset-4
+        = link_to cancel_edit_member_names_path(id: @record.id), class: "btn btn-danger", :remote => true do
+          i.fa.fa-close
+          '
+          = t('link.cancel')

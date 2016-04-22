@@ -1,0 +1,23 @@
+DOCTYPE
+html
+  head
+    title Sharin
+    = stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true
+    = javascript_include_tag 'application', 'data-turbolinks-track' => true
+    = javascript_include_tag "//www.google.com/jsapi", "chartkick"
+
+    = csrf_meta_tags
+    meta name="viewport" content="width=device-width, initial-scale=1.0"
+
+  body
+
+    .navbar.navbar-default.navbar-fixed-top role="navigation"
+      .container
+        .navbar-header
+          a.navbar-brand Sharin
+        .collapse.navbar-collapse
+
+    .container
+      .row
+        .col-xs-12.col-md-6.col-md-offset-2
+          == yield

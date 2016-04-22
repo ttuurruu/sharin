@@ -1,0 +1,6 @@
+.col-xs-12.col-md-12
+  |  現在開催中の評価　（ステータス・進捗率・評価結果サマリ）
+
+  = pie_chart User.group(:name).count
+  = bar_chart User.group(:name).count
+  = line_chart User.group(:created_at).count

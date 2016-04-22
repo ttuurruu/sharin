@@ -1,0 +1,40 @@
+br
+= paginate @evaluation_objectives, :remote => true
+br
+= @evaluation_objectives.total_count
+|  件中
+= @evaluation_objectives.offset_value + 1
+|  〜
+= @evaluation_objectives.offset_value + @evaluation_objectives.length
+|  件を表示
+
+- url_options = {action: :index}
+- html_options = {remote: true, method: :get}
+
+table.table.table-hover
+  thead
+    tr
+      th = sort_link(@q, :code, EvaluationObjective.human_attribute_name('code'), url_options, html_options)
+      th = sort_link(@q, :title, EvaluationObjective.human_attribute_name('title'), url_options, html_options)
+      th = EvaluationObjective.human_attribute_name('content')
+      th = EvaluationObjective.human_attribute_name('enable')
+      th
+      th
+
+  tbody
+    - @evaluation_objectives.each do |evaluation_objective|
+      tr
+        td = evaluation_objective.code
+        td
+          u
+            = link_to edit_evaluation_objective_path(evaluation_objective) do
+              =  evaluation_objective.title
+        td = evaluation_objective.content
+        td
+          - if evaluation_objective.enable == true
+            = link_to '有効', edit_evaluation_objective_path(evaluation_objective)
+          - else
+            = link_to '無効', edit_evaluation_objective_path(evaluation_objective)
+        td = link_to delete_evaluation_objective_path(evaluation_objective), data: {:confirm => 'Are you sure?'} do
+          i.fa.fa-trash-o
+            | 削除

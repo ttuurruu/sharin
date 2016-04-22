@@ -1,0 +1,30 @@
+.row
+  .text-left.pull-left
+    = paginate @users , :remote => true
+    br
+    = @users.total_count
+    |  件中
+    = @users.offset_value + 1
+    |  〜
+    = @users.offset_value + @users.length
+    |  件を表示
+
+  .text-right
+    u
+      = link_to new_user_path
+        i.fa.fa-plus-square-o
+        '
+        = t('link.new_member')
+
+.row
+  - @users.each do |user|
+    ul.thumbnails
+      li.col-xs-12.col-md-3 style="list-style:none"
+        .thumbnail.img-thumbnail.img-responsive
+          = link_to controller: :members, action: "profile", id: user.id do
+            = image_tag get_user_image(user.id) , width: '150', height: '150'
+        .caption
+          = user.code
+          br
+          = get_member_name(user.id)
+

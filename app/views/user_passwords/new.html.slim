@@ -1,0 +1,18 @@
+.col-xs-12.col-md-2
+  .list-group
+    .list-group-item.list-group-item-info
+      = link_to new_user_password_path do
+        i.fa.fa-refresh
+        |  パスワード変更
+
+.col-xs-12.col-md-10
+
+  == render 'shared/flash'
+
+  .panel.panel-default
+    .panel-heading
+      | パスワードの変更を行います。
+
+  = form_for @record do |f|
+    == render :partial => 'shared/form_column', :locals => {:f => f, form_columns: @form_columns}
+    == render :partial => 'shared/form_footer', :locals => {:f => f, form_footers: @form_footers}

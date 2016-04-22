@@ -1,0 +1,27 @@
+h1 Listing config_view_columns
+
+table
+  thead
+    tr
+      th Config view
+      th Column name
+      th Visible
+      th View order
+      th
+      th
+      th
+
+  tbody
+    - @config_view_columns.each do |config_view_column|
+      tr
+        td = config_view_column.config_view_id
+        td = config_view_column.column_name
+        td = config_view_column.visible
+        td = config_view_column.view_order
+        td = link_to 'Show', config_view_column
+        td = link_to 'Edit', edit_config_view_column_path(config_view_column)
+        td = link_to 'Destroy', config_view_column, data: {:confirm => 'Are you sure?'}, :method => :delete
+
+br
+
+= link_to 'New Config view column', new_config_view_column_path

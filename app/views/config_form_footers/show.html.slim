@@ -1,0 +1,9 @@
+p#notice = notice
+
+p
+  strong Form:
+  = @config_form_footer.form_id
+
+= link_to 'Edit', edit_config_form_footer_path(@config_form_footer)
+'|
+= link_to 'Back', config_form_footers_path

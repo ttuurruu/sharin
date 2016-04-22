@@ -1,0 +1,12 @@
+table.table.table-hover
+  thead
+    tr
+      th title
+      th content
+      th weight
+  tbody
+    - @evaluation_details.each do |evaluation_detail|
+      tr
+        td = evaluation_detail.title
+        td = evaluation_detail.content
+        td = evaluation_detail.weight

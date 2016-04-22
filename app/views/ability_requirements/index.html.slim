@@ -1,0 +1,30 @@
+.col-xs-12.col-md-12
+  h4
+    i.fa.fa-th
+      |  コンピテンシー項目設定
+
+  table.table.table-hover
+    thead
+      tr
+        th Category
+        th Code
+        th Title
+        th Content
+        th
+        th
+        th
+
+    tbody
+      - @ability_requirements.each do |ability_requirement|
+        tr
+          td = ability_requirement.category
+          td = ability_requirement.code
+          td = ability_requirement.title
+          td = ability_requirement.content
+          td = link_to 'Show', ability_requirement
+          td = link_to 'Edit', edit_ability_requirement_path(ability_requirement)
+          td = link_to 'Destroy', ability_requirement, data: {:confirm => 'Are you sure?'}, :method => :delete
+
+  br
+
+  = link_to 'New Ability requirement', new_ability_requirement_path

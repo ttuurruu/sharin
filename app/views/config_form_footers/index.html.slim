@@ -1,0 +1,21 @@
+h1 Listing config_form_footers
+
+table
+  thead
+    tr
+      th Form
+      th
+      th
+      th
+
+  tbody
+    - @config_form_footers.each do |config_form_footer|
+      tr
+        td = config_form_footer.form_id
+        td = link_to 'Show', config_form_footer
+        td = link_to 'Edit', edit_config_form_footer_path(config_form_footer)
+        td = link_to 'Destroy', config_form_footer, data: {:confirm => 'Are you sure?'}, :method => :delete
+
+br
+
+= link_to 'New Config form footer', new_config_form_footer_path

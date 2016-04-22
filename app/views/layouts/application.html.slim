@@ -1,0 +1,88 @@
+DOCTYPE
+html
+  head
+    title Sharin
+    = stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true
+    = javascript_include_tag 'application', 'data-turbolinks-track' => true
+    = javascript_include_tag "//www.google.com/jsapi", "chartkick"
+
+    = csrf_meta_tags
+    meta name="viewport" content="width=device-width, initial-scale=1.0"
+
+  body
+
+    .navbar.navbar-default.navbar-fixed-top role="navigation"
+      .container
+        .navbar-header
+          button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse"
+            span class="sr-only" Toggle navigation
+            span class="icon-bar"
+            span class="icon-bar"
+            span class="icon-bar"
+          a.navbar-brand Sharin
+        .collapse.navbar-collapse
+          ul.nav.navbar-nav
+            li
+              = link_to  controller: :homes, action: "user" do
+                i.fa.fa-home
+                |  home
+            li
+              = link_to controller: :users, action: "index" do
+                i.fa.fa-users
+                |  メンバー
+            li
+              = link_to controller: :users, action: "index" do
+                i.fa.fa-object-group
+                |  配置
+            li
+              = link_to controller: :evaluation_events, action: "index" do
+                i.fa.fa-area-chart
+                |  評価
+            li
+              = link_to controller: :users, action: "index" do
+                i.fa.fa-paper-plane-o
+                |  アンケート
+            li
+              = link_to controller: :users, action: "index" do
+                i.fa.fa-gavel
+                |  スキル
+            li
+              = link_to controller: :users, action: "index" do
+                i.fa.fa-gift
+                |  報酬
+            li
+              = link_to controller: :users, action: "index" do
+                i.fa.fa-thumbs-o-up
+                |  採用
+            li
+              = link_to controller: :users, action: "index" do
+                i.fa.fa-commenting-o
+                |  コミュニケーション
+            li
+              = link_to controller: :configurations, action: "index" do
+                i.fa.fa-cog
+                |  管理
+
+          ul.nav.navbar-nav.navbar-right
+            li.dropdown
+              a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"
+                span
+                  = image_tag(session[:image], :size => "20x20")
+                '
+                span
+                  => session[:user_name]
+                span.caret
+              ul.dropdown-menu
+                li
+                  = link_to new_user_password_path do
+                    i.fa.fa-cog
+                    |  個人設定
+                li role="separator" class="divider"
+                li
+                  = link_to  controller: :login, action: "logout" do
+                    i.fa.fa-sign-out
+                    |  Logout
+
+  .container
+
+    == yield
